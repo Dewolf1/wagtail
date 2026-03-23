@@ -1854,14 +1854,50 @@ class Page(AbstractPage, index.Indexed, ClusterableModel, metaclass=PageBase):
         return hasher.hexdigest()
 
     def get_sitemap_urls(self, request=None):
-        return [
-            {
-                "location": self.get_full_url(request),
-                # fall back on latest_revision_created_at if last_published_at is null
-                # (for backwards compatibility from before last_published_at was added)
-                "lastmod": (self.last_published_at or self.latest_revision_created_at),
-            }
-        ]
+        url_item = {
+            "location": self.get_full_url(request),
+            # fall back on latest_revision_created_at if last_published_at is null
+            # (for backwards compatibility from before last_published_at was added)
+            "lastmod": (self.last_published_at or self.latest_revision_created_at),
+        }
+
+        from django.conf import settings
+
+        if getattr(settings, "WAGTAIL_I18N_ENABLED", False):
+            from wagtail.models import Locale
+
+            alternates = []
+            default_locale = Locale.get_default()
+
+            translations = (
+                self.get_translations(inclusive=True)
+                .live()
+                .public()
+                .select_related("locale")
+                .specific()
+            )
+
+            for translation in translations:
+                url = translation.get_full_url(request)
+                if url:
+                    alternates.append(
+                        {
+                            "location": url,
+                            "lang_code": translation.locale.language_code,
+                        }
+                    )
+                    if translation.locale_id == default_locale.id:
+                        alternates.append(
+                            {
+                                "location": url,
+                                "lang_code": "x-default",
+                            }
+                        )
+
+            if alternates:
+                url_item["alternates"] = alternates
+
+        return [url_item]
 
     def get_ancestors(self, inclusive=False):
         """
