@@ -8,12 +8,20 @@ Changelog
  * Update project template Dockerfile to build dependencies in a separate stage (Brylie Oxley, Akshat Gupta)
  * Add `include_root` parameter to admin pages API endpoint (Divyansh Mishra)
  * Add support for Flourish oEmbeds (Garrett Coakley)
+ * Add support for Heyzine oEmbeds (Baptiste Darthenay)
+ * Allow specifying `creation_form_class` on `ChooserViewSet` as a dotted path string (Adithya00012)
+ * Various user experience improvements to autosave and concurrent editing notifications (Sage Abdullah)
+ * Allow validation of required StreamField blocks to be deferred on saving drafts (Sage Abdullah)
+ * Add `WAGTAILDOCS_MAX_UPLOAD_SIZE` setting for specifying maximum document file size (Om Harsh)
  * Fix: Handle nested inline models when displaying object usage information (Sage Abdullah, Kacper Walęga, Tian Jie Wong)
  * Fix: Avoid duplicate `get_object()` DB query in API detail view (Siddheshwar Kadam)
  * Fix: Ensure `ImageBlock` alt text populates on choosing a new image after unchecking decorative state (Pratham Jaiswal)
  * Fix: Set `verbose_name_plural` for Query model in search promotions app (Saptami)
  * Fix: Truncate overly long task names in workflow admin view (Gaurav Takhi)
  * Fix: Hide "Add child page" button when no child pages can be created as per `max_count` or `max_count_per_parent` (Lasse Schmieding)
+ * Fix: Use POST instead of DELETE in Cloudflare Frontend Cache Backend (Tom Usher)
+ * Fix: Handle null values for title, author name or provider name in OEmbed responses (Baptiste Darthenay)
+ * Fix: Preserve original data types from `ChoiceBlock` choices in block values (Devarshi Mani Tripathi)
  * Docs: Add documentation for the `filter_spec` parameter of `ImageRenditionField` (Soumya-codr)
  * Docs: Add guide for testing document upload forms (Wenli Tsai, Bhavesh Sharma)
  * Docs: Document the `nested_default_fields` attribute on API viewsets (Deepanshu Tevathiya)
@@ -23,6 +31,8 @@ Changelog
  * Docs: Add documentation for using the `ReferenceIndex` API (Saptami)
  * Docs: Retitle documentation page for settings contrib module to "Settings models" (Karl Hobley)
  * Docs: Fix typos and minor grammar issues (Kunal Gupta)
+ * Docs: Correct references to macOS and POSIX shell in tutorial (Ankit Kumar)
+ * Docs: Add PowerShell setup instructions to tutorial and correct method versus property terminology (Mustansir Dabhiya)
  * Maintenance: Removed support for Django 4.2
  * Maintenance: Fix LocaleController test failures caused by differing timezone representations between Node versions (Saptami, Matt Westcott)
  * Maintenance: Fix frontend coverage upload to Codecov (Sage Abdullah)
@@ -38,7 +48,17 @@ Changelog
  * Maintenance: Replace Puppeteer with Playwright for integration tests (Sage Abdullah)
  * Maintenance: Upgrade to latest Sass with changes for deprecated `if` syntax (Sage Abdullah)
  * Maintenance: Add explicit `timeout-minutes` to GitHub Actions workflow jobs (Ashutosh)
+ * Maintenance: Upgrade Python tooling, testing, and docs dependencies (Sage Abdullah)
+ * Maintenance: Support skipping transaction unit tests with a tag (Sage Abdullah)
+ * Maintenance: Remove unreachable code in wagtail.py (Oluwagbeminiyi Agbedejobi)
 
+
+7.3.2 (xx.xx.xxxx) - IN DEVELOPMENT
+~~~~~~~~~~~~~~~~~~
+
+ * Fix: Use protocol-relative URLs in the userbar for compatibility with environments where Django does not detect the protocol (Sage Abdullah)
+ * Fix: Index the contents of image descriptions as well as titles, for CMS search (Advik Sharma)
+ * Fix: Avoid creating a new editing session when updating UI elements after an autosave (Sage Abdullah)
 
 7.3.1 (03.03.2026)
 ~~~~~~~~~~~~~~~~~~
@@ -341,6 +361,10 @@ Changelog
  * Maintenance: Upgrade django-tasks to 0.8.x (Jake Howard)
  * Maintenance: Refresh accessibility targets in contributing docs (Thibaud Colas)
 
+7.0.7 (xx.xx.xxxx) - IN DEVELOPMENT
+~~~~~~~~~~~~~~~~~~
+
+ * Fix: Index the contents of image descriptions as well as titles, for CMS search (Advik Sharma)
 
 7.0.6 (03.03.2026)
 ~~~~~~~~~~~~~~~~~~
@@ -630,6 +654,10 @@ Changelog
  * Maintenance: Move images and documents `get_usage().count()` call to view code (Sage Abdullah)
  * Maintenance: Upgrade sass-loader to resolve Sass deprecation warnings (Ayaan Qadri)
 
+6.3.9 (xx.xx.xxxx) - IN DEVELOPMENT
+~~~~~~~~~~~~~~~~~~
+
+ * Fix: Index the contents of image descriptions as well as titles, for CMS search (Advik Sharma)
 
 6.3.8 (03.03.2026)
 ~~~~~~~~~~~~~~~~~~
