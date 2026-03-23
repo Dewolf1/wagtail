@@ -953,6 +953,12 @@
 * Ashutosh
 * Garrett Coakley
 * Collins Kubu
+* Advik Sharma
+* Oluwagbeminiyi Agbedejobi
+* Baptiste Darthenay
+* Adithya00012
+* Devarshi Mani Tripathi
+* Om Harsh
 
 ## Translators
 
